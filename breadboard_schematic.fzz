@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fritzing version="0.9.10" fritzingVersion="0.9.10" module="Core" referenceFile="reference.fzpz">
+  <author>ESP32 Project</author>
+  <title>ESP32 DOOM Project Breadboard</title>
+  <description>Breadboard schematic for ESP32 with ST7789 display and DHT11 sensor</description>
+  <date>2024-01-01</date>
+  <label>ESP32 DOOM Project</label>
+  <tags></tags>
+  <properties>
+    <property name="family">Core</property>
+    <property name="type">Breadboard</property>
+    <property name="variant">ESP32</property>
+  </properties>
+  <views>
+    <iconView>
+      <layers image="icon_icon.svg">
+        <layer layerId="icon"/>
+      </layers>
+    </iconView>
+    <breadboardView>
+      <layers image="breadboard_breadboard.svg">
+        <layer layerId="breadboard"/>
+        <layer layerId="breadboardNew"/>
+        <layer layerId="breadboardWire"/>
+        <layer layerId="breadboardNote"/>
+        <layer layerId="breadboardRuler"/>
+        <layer layerId="breadboardLabel"/>
+        <layer layerId="breadboardPart"/>
+        <layer layerId="breadboardSchematic"/>
+        <layer layerId="breadboardPCB"/>
+        <layer layerId="breadboardCopper1"/>
+        <layer layerId="breadboardCopper0"/>
+      </layers>
+    </breadboardView>
+    <schematicView>
+      <layers image="schematic_schematic.svg">
+        <layer layerId="schematic"/>
+        <layer layerId="schematicNew"/>
+        <layer layerId="schematicWire"/>
+        <layer layerId="schematicNote"/>
+        <layer layerId="schematicRuler"/>
+        <layer layerId="schematicLabel"/>
+        <layer layerId="schematicPart"/>
+        <layer layerId="schematicBreadboard"/>
+        <layer layerId="schematicPCB"/>
+        <layer layerId="schematicCopper1"/>
+        <layer layerId="schematicCopper0"/>
+      </layers>
+    </schematicView>
+    <pcbView>
+      <layers image="pcb_copper0.svg">
+        <layer layerId="copper0"/>
+        <layer layerId="copper1"/>
+        <layer layerId="silkscreen"/>
+        <layer layerId="partKeepout"/>
+        <layer layerId="groundplane"/>
+        <layer layerId="copper1keepout"/>
+        <layer layerId="copper0keepout"/>
+        <layer layerId="schematic"/>
+        <layer layerId="breadboard"/>
+        <layer layerId="note"/>
+        <layer layerId="ruler"/>
+        <layer layerId="wire"/>
+        <layer layerId="part"/>
+        <layer layerId="label"/>
+        <layer layerId="via"/>
+        <layer layerId="pad"/>
+        <layer layerId="hole"/>
+        <layer layerId="titleblock"/>
+        <layer layerId="schematicNew"/>
+        <layer layerId="schematicWire"/>
+        <layer layerId="schematicNote"/>
+        <layer layerId="schematicRuler"/>
+        <layer layerId="schematicLabel"/>
+        <layer layerId="schematicPart"/>
+        <layer layerId="schematicBreadboard"/>
+        <layer layerId="schematicPCB"/>
+        <layer layerId="schematicCopper1"/>
+        <layer layerId="schematicCopper0"/>
+        <layer layerId="breadboardNew"/>
+        <layer layerId="breadboardWire"/>
+        <layer layerId="breadboardNote"/>
+        <layer layerId="breadboardRuler"/>
+        <layer layerId="breadboardLabel"/>
+        <layer layerId="breadboardPart"/>
+        <layer layerId="breadboardSchematic"/>
+        <layer layerId="breadboardPCB"/>
+        <layer layerId="breadboardCopper1"/>
+        <layer layerId="breadboardCopper0"/>
+      </layers>
+    </pcbView>
+  </views>
+  <instances>
+    <instance moduleIdRef="ESP32 Dev Module" modelIndex="0" path="0">
+      <views>
+        <iconView>
+          <layers image="icon_icon.svg">
+            <layer layerId="icon"/>
+          </layers>
+        </iconView>
+        <breadboardView>
+          <layers image="breadboard_breadboard.svg">
+            <layer layerId="breadboard"/>
+            <layer layerId="breadboardNew"/>
+            <layer layerId="breadboardWire"/>
+            <layer layerId="breadboardNote"/>
+            <layer layerId="breadboardRuler"/>
+            <layer layerId="breadboardLabel"/>
+            <layer layerId="breadboardPart"/>
+            <layer layerId="breadboardSchematic"/>
+            <layer layerId="breadboardPCB"/>
+            <layer layerId="breadboardCopper1"/>
+            <layer layerId="breadboardCopper0"/>
+          </layers>
+        </breadboardView>
+        <schematicView>
+          <layers image="schematic_schematic.svg">
+            <layer layerId="schematic"/>
+            <layer layerId="schematicNew"/>
+            <layer layerId="schematicWire"/>
+            <layer layerId="schematicNote"/>
+            <layer layerId="schematicRuler"/>
+            <layer layerId="schematicLabel"/>
+            <layer layerId="schematicPart"/>
+            <layer layerId="schematicBreadboard"/>
+            <layer layerId="schematicPCB"/>
+            <layer layerId="schematicCopper1"/>
+            <layer layerId="schematicCopper0"/>
+          </layers>
+        </schematicView>
+        <pcbView>
+          <layers image="pcb_copper0.svg">
+            <layer layerId="copper0"/>
+            <layer layerId="copper1"/>
+            <layer layerId="silkscreen"/>
+            <layer layerId="partKeepout"/>
+            <layer layerId="groundplane"/>
+            <layer layerId="copper1keepout"/>
+            <layer layerId="copper0keepout"/>
+            <layer layerId="schematic"/>
+            <layer layerId="breadboard"/>
+            <layer layerId="note"/>
+            <layer layerId="ruler"/>
+            <layer layerId="wire"/>
+            <layer layerId="part"/>
+            <layer layerId="label"/>
+            <layer layerId="via"/>
+            <layer layerId="pad"/>
+            <layer layerId="hole"/>
+            <layer layerId="titleblock"/>
+            <layer layerId="schematicNew"/>
+            <layer layerId="schematicWire"/>
+            <layer layerId="schematicNote"/>
+            <layer layerId="schematicRuler"/>
+            <layer layerId="schematicLabel"/>
+            <layer layerId="schematicPart"/>
+            <layer layerId="schematicBreadboard"/>
+            <layer layerId="schematicPCB"/>
+            <layer layerId="schematicCopper1"/>
+            <layer layerId="schematicCopper0"/>
+            <layer layerId="breadboardNew"/>
+            <layer layerId="breadboardWire"/>
+            <layer layerId="breadboardNote"/>
+            <layer layerId="breadboardRuler"/>
+            <layer layerId="breadboardLabel"/>
+            <layer layerId="breadboardPart"/>
+            <layer layerId="breadboardSchematic"/>
+            <layer layerId="breadboardPCB"/>
+            <layer layerId="breadboardCopper1"/>
+            <layer layerId="breadboardCopper0"/>
+          </layers>
+        </pcbView>
+      </views>
+      <geometry x="0" y="0" z="-1" width="0" height="0" locked="0"/>
+    </instance>
+    <instance moduleIdRef="ST7789 TFT Display" modelIndex="0" path="1">
+      <views>
+        <iconView>
+          <layers image="icon_icon.svg">
+            <layer layerId="icon"/>
+          </layers>
+        </iconView>
+        <breadboardView>
+          <layers image="breadboard_breadboard.svg">
+            <layer layerId="breadboard"/>
+            <layer layerId="breadboardNew"/>
+            <layer layerId="breadboardWire"/>
+            <layer layerId="breadboardNote"/>
+            <layer layerId="breadboardRuler"/>
+            <layer layerId="breadboardLabel"/>
+            <layer layerId="breadboardPart"/>
+            <layer layerId="breadboardSchematic"/>
+            <layer layerId="breadboardPCB"/>
+            <layer layerId="breadboardCopper1"/>
+            <layer layerId="breadboardCopper0"/>
+          </layers>
+        </breadboardView>
+        <schematicView>
+          <layers image="schematic_schematic.svg">
+            <layer layerId="schematic"/>
+            <layer layerId="schematicNew"/>
+            <layer layerId="schematicWire"/>
+            <layer layerId="schematicNote"/>
+            <layer layerId="schematicRuler"/>
+            <layer layerId="schematicLabel"/>
+            <layer layerId="schematicPart"/>
+            <layer layerId="schematicBreadboard"/>
+            <layer layerId="schematicPCB"/>
+            <layer layerId="schematicCopper1"/>
+            <layer layerId="schematicCopper0"/>
+          </layers>
+        </schematicView>
+        <pcbView>
+          <layers image="pcb_copper0.svg">
+            <layer layerId="copper0"/>
+            <layer layerId="copper1"/>
+            <layer layerId="silkscreen"/>
+            <layer layerId="partKeepout"/>
+            <layer layerId="groundplane"/>
+            <layer layerId="copper1keepout"/>
+            <layer layerId="copper0keepout"/>
+            <layer layerId="schematic"/>
+            <layer layerId="breadboard"/>
+            <layer layerId="note"/>
+            <layer layerId="ruler"/>
+            <layer layerId="wire"/>
+            <layer layerId="part"/>
+            <layer layerId="label"/>
+            <layer layerId="via"/>
+            <layer layerId="pad"/>
+            <layer layerId="hole"/>
+            <layer layerId="titleblock"/>
+            <layer layerId="schematicNew"/>
+            <layer layerId="schematicWire"/>
+            <layer layerId="schematicNote"/>
+            <layer layerId="schematicRuler"/>
+            <layer layerId="schematicLabel"/>
+            <layer layerId="schematicPart"/>
+            <layer layerId="schematicBreadboard"/>
+            <layer layerId="schematicPCB"/>
+            <layer layerId="schematicCopper1"/>
+            <layer layerId="schematicCopper0"/>
+            <layer layerId="breadboardNew"/>
+            <layer layerId="breadboardWire"/>
+            <layer layerId="breadboardNote"/>
+            <layer layerId="breadboardRuler"/>
+            <layer layerId="breadboardLabel"/>
+            <layer layerId="breadboardPart"/>
+            <layer layerId="breadboardSchematic"/>
+            <layer layerId="breadboardPCB"/>
+            <layer layerId="breadboardCopper1"/>
+            <layer layerId="breadboardCopper0"/>
+          </layers>
+        </pcbView>
+      </views>
+      <geometry x="100" y="0" z="-1" width="0" height="0" locked="0"/>
+    </instance>
+    <instance moduleIdRef="DHT11 Sensor" modelIndex="0" path="2">
+      <views>
+        <iconView>
+          <layers image="icon_icon.svg">
+            <layer layerId="icon"/>
+          </layers>
+        </iconView>
+        <breadboardView>
+          <layers image="breadboard_breadboard.svg">
+            <layer layerId="breadboard"/>
+            <layer layerId="breadboardNew"/>
+            <layer layerId="breadboardWire"/>
+            <layer layerId="breadboardNote"/>
+            <layer layerId="breadboardRuler"/>
+            <layer layerId="breadboardLabel"/>
+            <layer layerId="breadboardPart"/>
+            <layer layerId="breadboardSchematic"/>
+            <layer layerId="breadboardPCB"/>
+            <layer layerId="breadboardCopper1"/>
+            <layer layerId="breadboardCopper0"/>
+          </layers>
+        </breadboardView>
+        <schematicView>
+          <layers image="schematic_schematic.svg">
+            <layer layerId="schematic"/>
+            <layer layerId="schematicNew"/>
+            <layer layerId="schematicWire"/>
+            <layer layerId="schematicNote"/>
+            <layer layerId="schematicRuler"/>
+            <layer layerId="schematicLabel"/>
+            <layer layerId="schematicPart"/>
+            <layer layerId="schematicBreadboard"/>
+            <layer layerId="schematicPCB"/>
+            <layer layerId="schematicCopper1"/>
+            <layer layerId="schematicCopper0"/>
+          </layers>
+        </schematicView>
+        <pcbView>
+          <layers image="pcb_copper0.svg">
+            <layer layerId="copper0"/>
+            <layer layerId="copper1"/>
+            <layer layerId="silkscreen"/>
+            <layer layerId="partKeepout"/>
+            <layer layerId="groundplane"/>
+            <layer layerId="copper1keepout"/>
+            <layer layerId="copper0keepout"/>
+            <layer layerId="schematic"/>
+            <layer layerId="breadboard"/>
+            <layer layerId="note"/>
+            <layer layerId="ruler"/>
+            <layer layerId="wire"/>
+            <layer layerId="part"/>
+            <layer layerId="label"/>
+            <layer layerId="via"/>
+            <layer layerId="pad"/>
+            <layer layerId="hole"/>
+            <layer layerId="titleblock"/>
+            <layer layerId="schematicNew"/>
+            <layer layerId="schematicWire"/>
+            <layer layerId="schematicNote"/>
+            <layer layerId="schematicRuler"/>
+            <layer layerId="schematicLabel"/>
+            <layer layerId="schematicPart"/>
+            <layer layerId="schematicBreadboard"/>
+            <layer layerId="schematicPCB"/>
+            <layer layerId="schematicCopper1"/>
+            <layer layerId="schematicCopper0"/>
+            <layer layerId="breadboardNew"/>
+            <layer layerId="breadboardWire"/>
+            <layer layerId="breadboardNote"/>
+            <layer layerId="breadboardRuler"/>
+            <layer layerId="breadboardLabel"/>
+            <layer layerId="breadboardPart"/>
+            <layer layerId="breadboardSchematic"/>
+            <layer layerId="breadboardPCB"/>
+            <layer layerId="breadboardCopper1"/>
+            <layer layerId="breadboardCopper0"/>
+          </layers>
+        </pcbView>
+      </views>
+      <geometry x="200" y="0" z="-1" width="0" height="0" locked="0"/>
+    </instance>
+  </instances>
+  <connectors>
+    <connector id="0" name="ST7789_CS" type="male" description="Chip Select">
+      <views>
+        <breadboardView>
+          <p layer="breadboard" svgId="connector0pin" terminalId="connector0terminal"/>
+          <p layer="breadboardWire" svgId="connector0wire" terminalId="connector0terminal"/>
+        </breadboardView>
+        <schematicView>
+          <p layer="schematic" svgId="connector0pin" terminalId="connector0terminal"/>
+          <p layer="schematicWire" svgId="connector0wire" terminalId="connector0terminal"/>
+        </schematicView>
+        <pcbView>
+          <p layer="copper0" svgId="connector0pin" terminalId="connector0terminal"/>
+          <p layer="copper1" svgId="connector0pin" terminalId="connector0terminal"/>
+        </pcbView>
+      </views>
+    </connector>
+    <connector id="1" name="ST7789_DC" type="male" description="Data/Command">
+      <views>
+        <breadboardView>
+          <p layer="breadboard" svgId="connector1pin" terminalId="connector1terminal"/>
+          <p layer="breadboardWire" svgId="connector1wire" terminalId="connector1terminal"/>
+        </breadboardView>
+        <schematicView>
+          <p layer="schematic" svgId="connector1pin" terminalId="connector1terminal"/>
+          <p layer="schematicWire" svgId="connector1wire" terminalId="connector1terminal"/>
+        </schematicView>
+        <pcbView>
+          <p layer="copper0" svgId="connector1pin" terminalId="connector1terminal"/>
+          <p layer="copper1" svgId="connector1pin" terminalId="connector1terminal"/>
+        </pcbView>
+      </views>
+    </connector>
+    <connector id="2" name="ST7789_RST" type="male" description="Reset">
+      <views>
+        <breadboardView>
+          <p layer="breadboard" svgId="connector2pin" terminalId="connector2terminal"/>
+          <p layer="breadboardWire" svgId="connector2wire" terminalId="connector2terminal"/>
+        </breadboardView>
+        <schematicView>
+          <p layer="schematic" svgId="connector2pin" terminalId="connector2terminal"/>
+          <p layer="schematicWire" svgId="connector2wire" terminalId="connector2terminal"/>
+        </schematicView>
+        <pcbView>
+          <p layer="copper0" svgId="connector2pin" terminalId="connector2terminal"/>
+          <p layer="copper1" svgId="connector2pin" terminalId="connector2terminal"/>
+        </pcbView>
+      </views>
+    </connector>
+    <connector id="3" name="DHT11_DATA" type="male" description="Data">
+      <views>
+        <breadboardView>
+          <p layer="breadboard" svgId="connector3pin" terminalId="connector3terminal"/>
+          <p layer="breadboardWire" svgId="connector3wire" terminalId="connector3terminal"/>
+        </breadboardView>
+        <schematicView>
+          <p layer="schematic" svgId="connector3pin" terminalId="connector3terminal"/>
+          <p layer="schematicWire" svgId="connector3wire" terminalId="connector3terminal"/>
+        </schematicView>
+        <pcbView>
+          <p layer="copper0" svgId="connector3pin" terminalId="connector3terminal"/>
+          <p layer="copper1" svgId="connector3pin" terminalId="connector3terminal"/>
+        </pcbView>
+      </views>
+    </connector>
+  </connectors>
+  <wires>
+    <wire id="0" modelIndex="0">
+      <view layer="breadboardWire" svgId="wire0"/>
+      <view layer="schematicWire" svgId="wire0"/>
+      <view layer="copper0" svgId="wire0"/>
+      <connector id="0" connectorId="0"/>
+      <connector id="1" connectorId="1"/>
+    </wire>
+    <wire id="1" modelIndex="0">
+      <view layer="breadboardWire" svgId="wire1"/>
+      <view layer="schematicWire" svgId="wire1"/>
+      <view layer="copper0" svgId="wire1"/>
+      <connector id="0" connectorId="1"/>
+      <connector id="1" connectorId="2"/>
+    </wire>
+    <wire id="2" modelIndex="0">
+      <view layer="breadboardWire" svgId="wire2"/>
+      <view layer="schematicWire" svgId="wire2"/>
+      <view layer="copper0" svgId="wire2"/>
+      <connector id="0" connectorId="2"/>
+      <connector id="1" connectorId="3"/>
+    </wire>
+    <wire id="3" modelIndex="0">
+      <view layer="breadboardWire" svgId="wire3"/>
+      <view layer="schematicWire" svgId="wire3"/>
+      <view layer="copper0" svgId="wire3"/>
+      <connector id="0" connectorId="3"/>
+      <connector id="1" connectorId="4"/>
+    </wire>
+  </wires>
+</fritzing> 

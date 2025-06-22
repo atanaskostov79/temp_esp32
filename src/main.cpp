@@ -8,44 +8,50 @@
 #include <vector>
 #include <string>
 
+#include "screenManager.h"
 #include "wifiManager.h"
+#include "btConfig.h"
 #include "weatherScreen.h"
 #include "clockScreen.h"
-#include "btConfig.h"
+#include "zenQuotesScreen.h"
+#include "dhtSensorScreen.h"
 
 #define TFT_CS   15
 #define TFT_DC    2
 #define TFT_RST   4
 
-#define DOOM_ORANGE 0xFD20 // По-тъмен оранжев за по-добра четимост
+#define DOOM_ORANGE 0xFD20
 
 Adafruit_ST7789 tft = Adafruit_ST7789(TFT_CS, TFT_DC, TFT_RST);
 Preferences preferences;
 BluetoothSerial SerialBT;
+
+ScreenState currentScreen;
 SemaphoreHandle_t dataMutex;
 
-// Обща функция за рисуване на фоновото изображение
 void drawBackground(Adafruit_ST7789& tft) {
-    // Рисуваме bitmap изображението като фон
     tft.drawRGBBitmap(0, 0, my_image, MY_IMAGE_WIDTH, MY_IMAGE_HEIGHT);
 }
 
-enum ScreenType { WEATHER, CLOCK };
-ScreenType currentScreen = WEATHER;
-
-unsigned long screenTimer = 0;
-
-// Нишка (Task) за обновяване на времето
 void weatherUpdateTask(void *pvParameters) {
-    Serial.println("Weather update task started.");
     for (;;) {
         updateWeatherData();
-        // Изчакваме 5 минути до следващото обновяване
-        vTaskDelay(300000 / portTICK_PERIOD_MS);
+        vTaskDelay(pdMS_TO_TICKS(5 * 60 * 1000));
+        taskYIELD();
     }
 }
 
-// Центрира всеки ред поотделно
+void quoteUpdateTask(void *pvParameters) {
+    // Първоначално зареждане на цитатите веднага
+    updateQuoteData();
+    
+    for (;;) {
+        updateQuoteData();
+        vTaskDelay(pdMS_TO_TICKS(15 * 60 * 1000));
+        taskYIELD();
+    }
+}
+
 void showStatusMultiline(const char* msg, uint16_t color = DOOM_ORANGE, int y = 100, uint8_t size = 2, int lineSpacing = 8) {
     drawBackground(tft);
     tft.setTextColor(color);
@@ -72,34 +78,36 @@ void showStatusMultiline(const char* msg, uint16_t color = DOOM_ORANGE, int y = 
     }
 }
 
-// Показва статус в центъра (мултиредово)
 void showStatus(const char* msg, uint16_t color = DOOM_ORANGE, int y = 100) {
     showStatusMultiline(msg, color, y, 2, 8);
 }
 
-// Показва SSID и IP при свързване
 void showWiFiInfo() {
-    drawBackground(tft);  // Използваме фоновото изображение
+    drawBackground(tft);
+    tft.fillRect(10, 10, 20, 3, ST77XX_WHITE);
+    tft.fillRect(290, 10, 20, 3, ST77XX_WHITE);
+    tft.fillRect(10, 157, 20, 3, ST77XX_WHITE);
+    tft.fillRect(290, 157, 20, 3, ST77XX_WHITE);
+    tft.fillRect(10, 10, 3, 20, ST77XX_WHITE);
+    tft.fillRect(307, 10, 3, 20, ST77XX_WHITE);
+    tft.fillRect(10, 140, 3, 20, ST77XX_WHITE);
+    tft.fillRect(307, 140, 3, 20, ST77XX_WHITE);
     
-    // Заглавие
     tft.setTextColor(DOOM_ORANGE);
     tft.setTextSize(2);
     tft.setCursor(80, 20);
     tft.print("WiFi Connected");
     
-    // SSID
     tft.setTextColor(ST77XX_GREEN);
     tft.setTextSize(2);
     tft.setCursor(20, 60);
     tft.print("SSID: ");
     tft.println(WiFi.SSID());
 
-    // IP адрес
     tft.setCursor(20, 100);
     tft.print("IP: ");
     tft.println(WiFi.localIP());
     
-    // Статус
     tft.setTextColor(DOOM_ORANGE);
     tft.setCursor(20, 140);
     tft.print("Signal: ");
@@ -111,7 +119,7 @@ void setup() {
     Serial.begin(115200);
     
     tft.init(170, 320);
-    tft.setRotation(1); // Хоризонтален режим
+    tft.setRotation(1);
     
     showStatus("DOOM ESP32", DOOM_ORANGE, 60);
     delay(1000);
@@ -122,7 +130,7 @@ void setup() {
     if(dataMutex == NULL){
         showStatus("FATAL ERROR", ST77XX_RED, 60);
         showStatus("Mutex failed", ST77XX_RED, 100);
-        while(1); // Stop execution
+        while(1);
     }
 
     connectToWiFi();
@@ -131,44 +139,73 @@ void setup() {
         startBluetooth();
     } else {
         showWiFiInfo();
-        delay(3000);
-        // Създаваме и стартираме нишката за времето на ядро 0
-        xTaskCreatePinnedToCore(
-            weatherUpdateTask,    // Функция на нишката
-            "WeatherTask",        // Име
-            10000,                // Размер на стека
-            NULL,                 // Параметри
-            1,                    // Приоритет
-            NULL,                 // Handle
-            0);                   // Ядро 0
+        delay(2000);
+        tft.fillScreen(ST77XX_BLACK);
     }
+
+    if (WiFi.status() == WL_CONNECTED) {
+        xTaskCreatePinnedToCore(
+            weatherUpdateTask,
+            "WeatherTask",
+            4096,
+            NULL,
+            1,
+            NULL,
+            0);
+            
+        xTaskCreatePinnedToCore(
+            quoteUpdateTask,
+            "QuoteTask",
+            4096,
+            NULL,
+            1,
+            NULL,
+            1);
+    }
+
+    setupDht();
+    currentScreen = CLOCK;
 }
 
 void loop() {
-    if (wifiConnected) {
-        if (millis() - screenTimer > 10000) {
-            screenTimer = millis();
-            currentScreen = (currentScreen == CLOCK) ? WEATHER : CLOCK;
-            
-            // Force a full redraw when switching screens
-            if (currentScreen == CLOCK) {
-                showClockScreen(tft, true);
-            } else {
-                showWeatherScreen(tft, true);
-            }
-        }
-
-        // The running task handles updates, just draw the current state
-        switch (currentScreen) {
-            case WEATHER:
-                showWeatherScreen(tft);
-                break;
-            case CLOCK:
-                showClockScreen(tft);
-                break;
-        }
-    } else {
-        processBluetoothCommands();
+    static unsigned long lastSwitchTime = 0;
+    static bool forceRedraw = true;
+    static unsigned long lastDhtRead = 0;
+    static unsigned long loopCounter = 0;
+    
+    loopCounter++;
+    
+    // Смяна на екраните на всеки 10 секунди
+    unsigned long currentTime = millis();
+    if (currentTime - lastSwitchTime > 10000) {
+        lastSwitchTime = currentTime;
+        currentScreen = (ScreenState)((currentScreen + 1) % 4);
+        forceRedraw = true;
     }
-    delay(100);
+
+    // Опитваме да вземем mutex с по-кратко време за изчакване
+    if (xSemaphoreTake(dataMutex, pdMS_TO_TICKS(10)) == pdTRUE) {
+        switch (currentScreen) {
+            case CLOCK:
+                showClockScreen(tft, forceRedraw);
+                break;
+            case WEATHER:
+                showWeatherScreen(tft, forceRedraw);
+                break;
+            case ZEN_QUOTE:
+                showZenQuoteScreen(tft, forceRedraw);
+                break;
+            case DHT_SENSOR:
+                showDhtSensorScreen(tft, forceRedraw);
+                break;
+        }
+        xSemaphoreGive(dataMutex);
+    }
+
+    if (forceRedraw) {
+        forceRedraw = false;
+    }
+
+    delay(200);
+    taskYIELD();
 }

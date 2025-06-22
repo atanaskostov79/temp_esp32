@@ -1,33 +1,31 @@
 #ifndef SCREEN_MANAGER_H
 #define SCREEN_MANAGER_H
 
-#include "weatherScreen.h"
-#include "clockScreen.h"
+#include <freertos/FreeRTOS.h>
+#include <freertos/semphr.h>
+#include <Adafruit_ST7789.h>
 
+// Глобални променливи
+extern SemaphoreHandle_t dataMutex;
+
+// Enum за състоянията на екрана
 enum ScreenState {
+    CLOCK,
     WEATHER,
-    CLOCK
+    ZEN_QUOTE,
+    DHT_SENSOR
 };
+extern ScreenState currentScreen;
 
-ScreenState currentScreen = WEATHER;
-unsigned long lastScreenSwitch = 0;
-const unsigned long screenInterval = 5000; // 5 секунди
+// Декларации на функциите за показване на екрани
+void showClockScreen(Adafruit_ST7789& tft, bool forceRedraw = false);
+void showWeatherScreen(Adafruit_ST7789& tft, bool forceRedraw = false);
+void showZenQuoteScreen(Adafruit_ST7789& tft, bool forceRedraw = false);
+void showDhtSensorScreen(Adafruit_ST7789& tft, bool forceRedraw = false);
 
-void updateScreen(Adafruit_ST7789& tft) {
-    unsigned long now = millis();
-    if (now - lastScreenSwitch >= screenInterval) {
-        currentScreen = (currentScreen == WEATHER) ? CLOCK : WEATHER;
-        lastScreenSwitch = now;
-    }
+extern unsigned long lastScreenSwitch;
+extern const unsigned long screenInterval;
 
-    switch (currentScreen) {
-        case WEATHER:
-            showWeatherScreen(tft);
-            break;
-        case CLOCK:
-            showClockScreen(tft);
-            break;
-    }
-}
+void updateScreen(Adafruit_ST7789& tft);
 
 #endif
